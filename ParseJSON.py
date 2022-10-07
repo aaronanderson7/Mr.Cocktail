@@ -34,21 +34,22 @@ def show_ingredients_garnishes():
     print("Here are the acceptable ingredients:\n")
     line_length = 0
     for ingredient in all_ingredients:
-        if line_length <= 50:
-            print(ingredient + ",", end=" ")
+        if line_length <= 40:
+            print(f"{ingredient} |", end=" ")
             line_length += len(ingredient)
         else:
-            print(ingredient + ",")
+            print(ingredient + " |")
             line_length = 0
 
     # Printing the list of possible garnishes.
     print("\n\nHere are the acceptable garnishes:\n")
+    line_length = 0
     for garnish in all_garnishes:
-        if line_length <= 50:
-            print(garnish + ",", end=" ")
+        if line_length <= 40:
+            print(f"{garnish} |", end=" ")
             line_length += len(garnish)
         else:
-            print(garnish + ",")
+            print(garnish + " |")
             line_length = 0
 
 
@@ -88,11 +89,11 @@ def cocktail_search(user_ingredients_list, user_garnish_list, user_desired_categ
 
     # If user does not have enough ingredients for any cocktails, prints out following message.
     if len(possible_cocktails) == 0:
-        print("Unfortunately, your listed ingredients are not sufficient to make any of the cocktails in our recipe book.")
+        print("Sadly, your listed ingredients are not sufficient to make any of the cocktails in our recipe book.")
     # User can make certain cocktails, prints out cocktail names and corresponding information.
     else:
-        print(f"\n\nParty time! You can make {str(number_of_cocktails)} different cocktails to serve your group "
-              f"of {str(user_servings)}! Here they are:\n")
+        print(f"\nParty time! You can make {str(number_of_cocktails)} cocktail(s) to serve your group "
+              f"of {str(user_servings)}:\n")
         for cocktail in possible_cocktails:
             print(
                 cocktail + ":\n" +
