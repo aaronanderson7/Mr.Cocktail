@@ -11,7 +11,7 @@
         "ingredient": "Vodka" },
       { "unit": "cl",
         "amount": 0.75,
-        "ingredient": "Lillet Blonde" }
+        "ingredient": "Lillet blonde" }
     ],
     "garnish": "Lemon twist",
     "preparation": "Shake and strain into a chilled cocktail glass." },
@@ -149,7 +149,7 @@
         "amount": 1,
         "ingredient": "Syrup",
         "label": "Sugar syrup" },
-      { "special": "3 to 4 dashes Angostura bitters" }
+      { "special": "3 dashes Angostura bitters" }
     ],
     "garnish": "Pineapple slice and a cherry",
     "preparation": "Pour all ingredients, except the bitters, into shaker filled with ice. Shake. Pour into large glass, filled with ice. Add Angostura bitters, “on top”." },
