@@ -1,3 +1,5 @@
+#Version 2 confines the user input to the get method of the class, but this might be wrong.
+
 def start_program():
     """ Starts the cocktail generator program"""
 
@@ -102,5 +104,3 @@ class Ingredient:
         return self._user_servings
 
 
-
-# Testing upload to Git.
