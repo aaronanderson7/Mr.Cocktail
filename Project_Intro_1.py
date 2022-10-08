@@ -1,4 +1,4 @@
-#Version 1 confines the user inputs to the start_program function so the inputs are more spaced out.
+# Version 1 confines the user inputs to the start_program function so the inputs are more spaced out.
 
 
 def start_program(all_ingredients, all_garnishes, all_categories):

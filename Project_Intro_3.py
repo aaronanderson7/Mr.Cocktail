@@ -1,4 +1,4 @@
-#Version 3 initializes the data members of the class Ingredient to ask for an input, but I dont
+# Version 3 initializes the data members of the class Ingredient to ask for an input, but I dont
 #know if this is the best way to structure our program.
 
 def start_program(all_ingredients, all_garnishes, all_categories):
