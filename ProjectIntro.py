@@ -164,33 +164,3 @@ def get_servings():
     # Input for number of desired servings.
     user_servings = input("\nPlease enter how many servings (e.g. 1, 2, 3, etc.): ")
     return int(user_servings)
-
-
-# Do we even need an ingredient object?
-class Ingredient:
-    """ Represents a unique Ingredient object.
-    :attribute: user_ingredients_list = list of user inputted ingredient garnishes
-    :attribute: user_garnish_list = list of user inputted garnishes
-    :attribute: user_category_list = list of user inputted drink categories.
-    :attribute: user_servings = number of user inputted servings.
-    """
-
-    def __init__(self, user_ingredients_list, user_garnish_list, user_category_list, user_servings):
-        """ Initialize the data members."""
-        self._user_ingredients_list = user_ingredients_list
-        self._user_garnish_list = user_garnish_list
-        self._user_category_list = user_category_list
-        self._user_servings = user_servings
-
-    def get_user_ingredients_list(self):
-        """" Retrieve the current user_ingredients_list"""
-        return self._user_ingredients_list
-
-    def get_user_garnish_list(self):
-        return self._user_garnish_list
-
-    def get_user_category_list(self):
-        return self._user_category_list
-
-    def get_user_servings(self):
-        return self._user_servings
