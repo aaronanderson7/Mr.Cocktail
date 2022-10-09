@@ -3,54 +3,99 @@ import json
 no_ingredients = []
 user_ingredients = ["Vodka", "White Rum", "Lime juice", "Syrup", "Tequila", "Orange juice"]
 user_garnish = ["Lemon twist", "Lime wedge"]
-user_category = "Long Drink"
+user_category = ["Long Drink"]
 user_servings = 4
 
 
-def show_ingredients_garnishes():
+def show_ingredients():
     """
     Allows the user to see what the acceptable ingredients and garnishes are in a list.
     :return: Prints out the possible ingredients and garnishes that the user can input.
     """
-    all_ingredients = []
-    all_garnishes = []
+    # Check if use wants to see the ingredients and garnishes.
+    user_show_ingredients = str(input("\nWould you like to first see a list of all possible ingredients? (Yes / No): "))
 
-    # Open the Cocktails.json file to read.
-    with open('Cocktails.json', 'r') as infile:
-        cocktails_dict = json.load(infile)
+    if user_show_ingredients == "Yes" or user_show_ingredients == "yes":
+        all_ingredients = []
 
-    # Add each possible ingredient from the JSON file to all_ingredients.
-    for cocktail in cocktails_dict:
-        for ingredient in cocktail["ingredients"]:
-            if "ingredient" in ingredient and ingredient["ingredient"] not in all_ingredients:
-                all_ingredients.append(ingredient["ingredient"])
+        # Open the Cocktails.json file to read.
+        with open('Cocktails.json', 'r') as infile:
+            cocktails_dict = json.load(infile)
 
-    # Add each possible garnish from the JSON file to all_garnishes.
-    for cocktail in cocktails_dict:
-        if "garnish" in cocktail and cocktail["garnish"] not in all_ingredients:
-            all_garnishes.append(cocktail["garnish"])
+        # Add each possible ingredient from the JSON file to all_ingredients.
+        for cocktail in cocktails_dict:
+            for ingredient in cocktail["ingredients"]:
+                if "ingredient" in ingredient and ingredient["ingredient"] not in all_ingredients:
+                    all_ingredients.append(ingredient["ingredient"])
 
-    # Printing the list of possible ingredients.
-    print("Here are the acceptable ingredients:\n")
-    line_length = 0
-    for ingredient in all_ingredients:
-        if line_length <= 40:
-            print(f"{ingredient} |", end=" ")
-            line_length += len(ingredient)
-        else:
-            print(ingredient + " |")
-            line_length = 0
+        # Printing the list of possible ingredients.
+        print("\nHere are the acceptable ingredients:\n")
+        line_length = 0
+        for ingredient in all_ingredients:
+            if line_length <= 40:
+                print(f"{ingredient} |", end=" ")
+                line_length += len(ingredient)
+            else:
+                print(ingredient + " |")
+                line_length = 0
+        print("\n")
+    return
 
-    # Printing the list of possible garnishes.
-    print("\n\nHere are the acceptable garnishes:\n")
-    line_length = 0
-    for garnish in all_garnishes:
-        if line_length <= 40:
-            print(f"{garnish} |", end=" ")
-            line_length += len(garnish)
-        else:
-            print(garnish + " |")
-            line_length = 0
+
+def show_garnishes():
+    """
+    Allows the user to see what the acceptable ingredients and garnishes are in a list.
+    :return: Prints out the possible ingredients and garnishes that the user can input.
+    """
+    # Check if use wants to see the ingredients and garnishes.
+    user_show_garnishes = str(input("\nWould you like to first see a list of all possible garnishes? (Yes / No): "))
+
+    if user_show_garnishes == "Yes" or user_show_garnishes == "yes":
+        all_garnishes = []
+
+        # Open the Cocktails.json file to read.
+        with open('Cocktails.json', 'r') as infile:
+            cocktails_dict = json.load(infile)
+
+        # Add each possible garnish from the JSON file to all_garnishes.
+        for cocktail in cocktails_dict:
+            if "garnish" in cocktail and cocktail["garnish"] not in all_garnishes:
+                all_garnishes.append(cocktail["garnish"])
+
+        # Printing the list of possible garnishes.
+        print("\nHere are the acceptable garnishes:\n")
+        line_length = 0
+        for garnish in all_garnishes:
+            if line_length <= 40:
+                print(f"{garnish} |", end=" ")
+                line_length += len(garnish)
+            else:
+                print(garnish + " |")
+                line_length = 0
+        print("\n")
+    return
+
+
+def show_categories():
+    # Check if use wants to see the ingredients and garnishes.
+    user_show_categories = str(input("\nWould you like to first see a list of all possible categories? (Yes / No): "))
+
+    if user_show_categories == "Yes" or user_show_categories == "yes":
+        all_categories = []
+
+        # Open the Cocktails.json file to read.
+        with open('Cocktails.json', 'r') as infile:
+            cocktails_dict = json.load(infile)
+
+        # Add each possible garnish from the JSON file to all_garnishes.
+        print("\nHere are the acceptable categories:\n")
+        for cocktail in cocktails_dict:
+            if "category" in cocktail and cocktail["category"] not in all_categories:
+                all_categories.append(cocktail["category"])
+        for category in all_categories:
+            print(f"{category} |", end=" ")
+        print("\n")
+    return
 
 
 def cocktail_search(user_ingredients_list, user_garnish_list, user_desired_category, user_servings):
@@ -82,14 +127,14 @@ def cocktail_search(user_ingredients_list, user_garnish_list, user_desired_categ
             # Some cocktails have no garnishes.
             if entry.get("garnish") is None:
                 entry["garnish"] = "None"
-            if user_desired_category == "" or user_desired_category == entry["category"]:
+            if len(user_desired_category) == 0 or entry["category"] in user_desired_category:
                 possible_cocktails[entry["name"]] = \
                     [entry["glass"], entry["category"], entry["ingredients"], entry["garnish"], entry["preparation"]]
                 number_of_cocktails += 1
 
     # If user does not have enough ingredients for any cocktails, prints out following message.
     if len(possible_cocktails) == 0:
-        print("Sadly, your listed ingredients are not sufficient to make any of the cocktails in our recipe book.")
+        print("\nSadly, your listed ingredients are not sufficient to make any of the cocktails in our recipe book.")
     # User can make certain cocktails, prints out cocktail names and corresponding information.
     else:
         print(f"\nParty time! You can make {str(number_of_cocktails)} cocktail(s) to serve your group "
@@ -102,6 +147,7 @@ def cocktail_search(user_ingredients_list, user_garnish_list, user_desired_categ
                 "\t" + f"Ingredients to Serve {user_servings}: "
             )
             for items in possible_cocktails[cocktail][2]:
+                # Convert to fluid ounces.
                 if "amount" in items:
                     amount = round(user_servings * items["amount"] * 0.33814, 1)
                     ingredient = str(items["ingredient"])
@@ -119,7 +165,4 @@ def cocktail_search(user_ingredients_list, user_garnish_list, user_desired_categ
                 "\t" + "Garnish: " + possible_cocktails[cocktail][3] + "\n"
                 "\t" + "Preparation: " + possible_cocktails[cocktail][4] + "\n"
             )
-
-
-show_ingredients_garnishes()
-cocktail_search(user_ingredients, user_garnish, user_category, user_servings)
+    return

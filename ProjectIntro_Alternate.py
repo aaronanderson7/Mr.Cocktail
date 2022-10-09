@@ -33,7 +33,7 @@ class Ingredient:
         :param: all_ingredients = list of all available ingredients from the json file.
         :return: list of user inputted ingredients that are in the all_ingredients list. """
 
-        #Split up the list of ingredients from the user.
+        # Split up the list of ingredients from the user.
         place_holder = self._user_ingredients_list
         self._user_ingredients_list = place_holder.split(", ")
 
