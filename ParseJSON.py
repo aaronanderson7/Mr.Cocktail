@@ -1,9 +1,9 @@
 import json
 
 no_ingredients = []
-user_ingredients = ["Vodka", "White Rum", "Lime juice", "Syrup", "Tequila", "Orange juice"]
-user_garnish = ["Lemon twist", "Lime wedge"]
-user_category = ["Long Drink"]
+user_ingredients = ["Vodka", "Tomato juice", "Lemon juice"]
+user_garnish = ["Wrong"]
+user_category = []
 user_servings = 4
 
 
@@ -118,15 +118,19 @@ def cocktail_search(user_ingredients_list, user_garnish_list, user_desired_categ
     # Search the JSON file for the ingredients in user_ingredients_list.
     for entry in cocktails_dict:
         sufficient_ingredients = True
+        # Check if user has sufficient ingredients for cocktail entries.
         for ingredient in entry["ingredients"]:
-            # When an ingredient is a part of a cocktail, user does not have sufficient ingredients.
             if "ingredient" in ingredient and sufficient_ingredients is True and ingredient["ingredient"] not in user_ingredients_list:
                 sufficient_ingredients = False
+        # Check if user has sufficient garnishes for cocktail.
+        if "garnish" in entry and entry["garnish"] not in user_garnish_list:
+            sufficient_ingredients = False
         # User has sufficient ingredients for given cocktail, add to the dictionary of possible cocktails.
         if sufficient_ingredients is True:
             # Some cocktails have no garnishes.
             if entry.get("garnish") is None:
                 entry["garnish"] = "None"
+            # Check if cocktail is of the specified category.
             if len(user_desired_category) == 0 or entry["category"] in user_desired_category:
                 possible_cocktails[entry["name"]] = \
                     [entry["glass"], entry["category"], entry["ingredients"], entry["garnish"], entry["preparation"]]
@@ -134,7 +138,22 @@ def cocktail_search(user_ingredients_list, user_garnish_list, user_desired_categ
 
     # If user does not have enough ingredients for any cocktails, prints out following message.
     if len(possible_cocktails) == 0:
-        print("\nSadly, your listed ingredients are not sufficient to make any of the cocktails in our recipe book.")
+        print("\nSadly, your listed ingredients are not sufficient to make any of the cocktails in our recipe book. "
+              "Better run to the store!")
+        if user_garnish_list != []:
+            try_again = input("It appears you entered garnishes, would you like to search again without garnishes? "
+                              "Besides, who needs those frills anyway... (Yes / No): ")
+            if try_again.capitalize() == "Yes":
+                all_garnishes = []
+                # Open the Cocktails.json file to read.
+                with open('Cocktails.json', 'r') as infile:
+                    cocktails_dict = json.load(infile)
+
+                # Add each possible garnish from the JSON file to all_garnishes.
+                for cocktail in cocktails_dict:
+                    if "garnish" in cocktail and cocktail["garnish"] not in all_garnishes:
+                        all_garnishes.append(cocktail["garnish"])
+                cocktail_search(user_ingredients_list, all_garnishes, user_desired_category, user_servings)
     # User can make certain cocktails, prints out cocktail names and corresponding information.
     else:
         print(f"\nParty time! You can make {str(number_of_cocktails)} cocktail(s) to serve your group "
@@ -166,3 +185,5 @@ def cocktail_search(user_ingredients_list, user_garnish_list, user_desired_categ
                 "\t" + "Preparation: " + possible_cocktails[cocktail][4] + "\n"
             )
     return
+
+cocktail_search(user_ingredients, user_garnish, user_category, user_servings)
