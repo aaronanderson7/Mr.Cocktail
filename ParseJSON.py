@@ -1,10 +1,11 @@
 import json
 
-no_ingredients = []
-user_ingredients = ["Vodka", "Tomato juice", "Lemon juice"]
-user_garnish = ["Wrong"]
-user_category = []
-user_servings = 4
+# Use for testing functions:
+# no_ingredients = []
+# user_ingredients = ["Vodka", "Tomato juice", "Lemon juice"]
+# user_garnish = ["Wrong"]
+# user_category = []
+# user_servings = 4
 
 
 def show_ingredients():
@@ -186,4 +187,4 @@ def cocktail_search(user_ingredients_list, user_garnish_list, user_desired_categ
             )
     return
 
-cocktail_search(user_ingredients, user_garnish, user_category, user_servings)
+# cocktail_search(user_ingredients, user_garnish, user_category, user_servings)

@@ -1,6 +1,5 @@
 from ProjectIntro import *
 from ParseJSON import *
-import json
 
 start_program()
 
