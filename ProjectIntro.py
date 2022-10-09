@@ -3,7 +3,9 @@ import json
 
 
 def start_program():
-    """ Starts the cocktail generator program."""
+    """
+    Starts the cocktail generator program.
+    """
     # Program Introduction
     print("Welcome to Mr. Cocktail! The cocktail recipe generator for those days you don't know what you want to drink."
           "\n From the list of provided ingredients and garnishes, please provide the "
@@ -11,8 +13,9 @@ def start_program():
 
 
 def get_ingredients():
-    """ Gathers the users inputted available ingredients for cocktails.
-    :return: user_ingredients_list = list of user inputted available ingredients that they have on hand.
+    """
+    Gathers the users inputted available ingredients for cocktails.
+    :return: List of user inputted available ingredients that they have on hand.
     """
 
     # Create the list of all possible ingredients from JSON file.
@@ -62,8 +65,9 @@ def get_ingredients():
 
 
 def get_garnishes_updated():
-    """ Gathers the users inputted available garnishes for cocktails.
-    :return: user_garnishes_list = list of user inputted available garnishes that they have on hand.
+    """
+    Gathers the users inputted available garnishes for cocktails.
+    :return: List of user inputted available garnishes that they have on hand.
     """
     # Create the list of all possible garnishes from JSON file.
     all_garnishes = []
@@ -111,9 +115,9 @@ def get_garnishes_updated():
 
 
 def get_categories_updated():
-    """ Starts the cocktail generator program and gathers the users inputted available materials for cocktails.
-    :param: all_categories = list of all possible categories from json file.
-    :return: user_categories_list = list of user inputted available categories that they have on hand.
+    """
+    Gets the users inputted categories for cocktails.
+    :return: List of user inputted categories.
     """
 
     all_categories = []
@@ -157,9 +161,9 @@ def get_categories_updated():
 
 
 def get_servings():
-    """ Starts the cocktail generator program and gathers the users inputted available materials for cocktails.
-    :param: all_categories = list of all possible categories from json file.
-    :return: user_categories_list = list of user inputted available categories that they have on hand.
+    """
+    Gets the desired number of servings from the user.
+    :return: Integer corresponding to number of servings.
     """
     # Input for number of desired servings.
     user_servings = input("\nPlease enter how many servings (e.g. 1, 2, 3, etc.): ")

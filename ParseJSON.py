@@ -1,19 +1,12 @@
 import json
 
-# Use for testing functions:
-# no_ingredients = []
-# user_ingredients = ["Vodka", "Tomato juice", "Lemon juice"]
-# user_garnish = ["Wrong"]
-# user_category = []
-# user_servings = 4
-
 
 def show_ingredients():
     """
-    Allows the user to see what the acceptable ingredients and garnishes are in a list.
-    :return: Prints out the possible ingredients and garnishes that the user can input.
+    Allows the user to see what the acceptable ingredients are in a list and prints
+    out the possible ingredients that the user can input.
     """
-    # Check if use wants to see the ingredients and garnishes.
+    # Check if use wants to see the ingredients.
     user_show_ingredients = str(input("\nWould you like to first see a list of all possible ingredients? (Yes / No): "))
 
     if user_show_ingredients == "Yes" or user_show_ingredients == "yes":
@@ -45,10 +38,10 @@ def show_ingredients():
 
 def show_garnishes():
     """
-    Allows the user to see what the acceptable ingredients and garnishes are in a list.
-    :return: Prints out the possible ingredients and garnishes that the user can input.
+    Allows the user to see what the acceptable garnishes are in a list and
+    prints out the possible garnishes that the user can input.
     """
-    # Check if use wants to see the ingredients and garnishes.
+    # Check if use wants to see the garnishes.
     user_show_garnishes = str(input("\nWould you like to first see a list of all possible garnishes? (Yes / No): "))
 
     if user_show_garnishes == "Yes" or user_show_garnishes == "yes":
@@ -78,7 +71,11 @@ def show_garnishes():
 
 
 def show_categories():
-    # Check if use wants to see the ingredients and garnishes.
+    """
+    Allows the user to see what the acceptable categories are in a list and
+    prints out the possible categories that the user can input.
+    """
+    # Check if use wants to see the categories.
     user_show_categories = str(input("\nWould you like to first see a list of all possible categories? (Yes / No): "))
 
     if user_show_categories == "Yes" or user_show_categories == "yes":
@@ -88,7 +85,7 @@ def show_categories():
         with open('Cocktails.json', 'r') as infile:
             cocktails_dict = json.load(infile)
 
-        # Add each possible garnish from the JSON file to all_garnishes.
+        # Add each possible garnish from the JSON file to all_categories.
         print("\nHere are the acceptable categories:\n")
         for cocktail in cocktails_dict:
             if "category" in cocktail and cocktail["category"] not in all_categories:
@@ -186,5 +183,3 @@ def cocktail_search(user_ingredients_list, user_garnish_list, user_desired_categ
                 "\t" + "Preparation: " + possible_cocktails[cocktail][4] + "\n"
             )
     return
-
-# cocktail_search(user_ingredients, user_garnish, user_category, user_servings)
