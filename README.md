@@ -1,4 +1,4 @@
-# OSU_FALL_2022_HACKATHON
+# Mr. Cocktail Python Application
 OSU FALL 2022 Hackathon
 
 Presented by Oregon State University's Hackathon Club, our quarterly hackathons ("Beaverhacks") gives the OSU community opportunities to learn new skills, build cool stuff, and compete for prizes. We’re beginner-friendly, inclusive of all backgrounds, and focused on fun!
